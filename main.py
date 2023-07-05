@@ -65,7 +65,7 @@ def main(video_path: str, model_path: str, bacth_size: int = 64) -> None:
     # output
     fmt = cv2.VideoWriter_fourcc("m", "p", "4", "v")
     writer = cv2.VideoWriter(
-        video_path.replace(".mp4", "_processed.mp4v"),
+        video_path.replace(".mp4", "_mosaic.mp4v"),
         fmt,
         frame_rate,
         size,
@@ -114,8 +114,8 @@ def main(video_path: str, model_path: str, bacth_size: int = 64) -> None:
 if __name__ == "__main__":
     start_time = time.time()
 
-    model_path = os.path.join("models", "yolov5n.pt")
-    video_path = os.path.join("sample_movie", "sample_walk.mp4")
+    model_path = os.path.join("models", "best.pt")
+    video_path = os.path.join("sample_movie", "sample_pickles_preprocessed.mp4")
 
     main(video_path=video_path, model_path=model_path, bacth_size=128)
 

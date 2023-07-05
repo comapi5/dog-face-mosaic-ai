@@ -12,7 +12,7 @@ def change_resolution(
 
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")  # 出力動画のコーデック
     output_video = cv2.VideoWriter(
-        video_path.replace(".mp4", "_preprocessed.mp4v"),
+        video_path.replace(".mp4", "_preprocessed.mp4"),
         fourcc,
         input_video.get(cv2.CAP_PROP_FPS),
         (targe_size[0], targe_size[1]),
