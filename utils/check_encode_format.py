@@ -3,7 +3,7 @@ import os
 import cv2
 from logzero import logger
 
-video_path = os.path.join("..", "sample_movie", "sample_walk.mp4")
+video_path = os.path.join("sample_movie", "sample_walk.mp4")
 video = cv2.VideoCapture(video_path)
 
 # エンコード方式の取得
