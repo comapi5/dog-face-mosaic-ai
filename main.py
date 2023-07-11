@@ -1,3 +1,4 @@
+import argparse
 import os
 import time
 from math import ceil
@@ -111,11 +112,20 @@ def main(video_path: str, model_path: str, bacth_size: int = 64) -> None:
     video.release()
 
 
+def parse_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--video", type=str)
+    parser.add_argument("--model", type=str)
+
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
     start_time = time.time()
 
-    model_path = os.path.join("models", "best.pt")
-    video_path = os.path.join("sample_movie", "sample_pickles_preprocessed.mp4")
+    opt = parse_opt()
+    video_path = opt.video
+    model_path = opt.model
 
     main(video_path=video_path, model_path=model_path, bacth_size=128)
 
