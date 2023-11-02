@@ -1,22 +1,23 @@
 import argparse
+import math
 import os
 import time
-from math import ceil
 
 import cv2
+import numpy as np
 import torch
+import tqdm
 from logzero import logger
-from tqdm import trange
 
 
-def mosaic(img, alpha=0.05):
+def mosaic(img: np.ndarray, alpha: float = 0.05):
     try:
         w = img.shape[1]
         h = img.shape[0]
 
         # int()で丸めると0になった場合にエラーとなるためceil()を使用
-        _w = ceil(w * alpha)
-        _h = ceil(h * alpha)
+        _w = math.ceil(w * alpha)
+        _h = math.ceil(h * alpha)
 
         img = cv2.resize(img, (_w, _h))
         img = cv2.resize(img, (w, h), interpolation=cv2.INTER_NEAREST)
@@ -79,7 +80,7 @@ def main(video_path: str, model_path: str, bacth_size: int = 64) -> None:
         i = 0
         j = 0
         frame_list = []
-        for frame_idx in trange(frame_count):  # tgdm(range(frame_count))
+        for frame_idx in tqdm.trange(frame_count):  # tgdm(range(frame_count))
             i += 1
 
             video.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
